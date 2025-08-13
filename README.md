@@ -1,4 +1,4 @@
-# Gurukula Coaching Centre
+# Gurukula Coaching
 
 # Firebase Studio
 
