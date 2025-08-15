@@ -1,4 +1,3 @@
-
 // src/app/api/genkit/[...slug]/route.ts
 import { genkit } from 'genkit';
 import {googleAI} from '@genkit-ai/googleai';
@@ -12,4 +11,4 @@ export const ai = genkit({
 });
 
 
-export const POST = nextJSHandler(ai);
+export const { POST } = nextJSHandler(ai);
