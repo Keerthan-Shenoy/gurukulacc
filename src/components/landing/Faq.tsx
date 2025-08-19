@@ -13,24 +13,28 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const faqs = [
     {
-        question: "What courses does GCC offer?",
-        answer: "GCC provides comprehensive coaching for Class 9 & 10 (ICSE, CBSE, State Board) and prepares students for competitive exams like JEE, NEET, and KCET."
+        question: "Which is the better time to start the preparation to competitive professional entrance examinations such as jee need and so on?",
+        answer: "6th standard is time to so early preparation. 9th standard is a really better time to prepare. 10th standard is already late to prepare. 11th standard, it is too late. 12th standard, can prepare but result depends on your fate."
     },
     {
-        question: "What is the batch size for the classes?",
-        answer: "We believe in personalized attention and maintain small batch sizes to ensure every student gets the individual focus they deserve from our expert faculty."
+        question: "Is maths a difficult subject to study?",
+        answer: "Not difficult but distinct, needs different strategy to study."
     },
     {
-        question: "How do you assess student progress?",
-        answer: "We conduct regular assessments, including chapter-wise tests, mock exams, and performance analysis to track student progress and identify areas for improvement."
+        question: "Being a student, daily how many hours I should study?",
+        answer: "Don't consider hours, in one hour how much qualitatively and quantitatively student Learns is important."
     },
     {
-        question: "Are there any remedial classes for students who need extra help?",
-        answer: "Yes, we offer remedial activities and doubt-clearing sessions. Our innovative methods help students overcome learning gaps and strengthen their understanding of concepts."
+        question: "Whatever I do, forget all the learnt things after some period are in the required time. what I have to do?",
+        answer: "Learn to learn unforgettably. To acquire effective learning skills, an assessment, diagnosis, training, and practice process should take place."
     },
     {
-        question: "How can I enroll my child at GCC?",
-        answer: "You can start by contacting us via phone or email to schedule a counseling session. You can find all our contact details in the 'Contact Us' section of our website."
+        question: "Being student how many hours I have to relax I mean sleep?",
+        answer: "The number of hours required by your body and mind to refresh. The time duration depends on the individual and their lifestyle."
+    },
+    {
+        question: "How to overcome from distractions during study?",
+        answer: "Distract the distractions by firm determination and regular practice, repeatedly concentrating on study."
     }
 ]
 
@@ -41,7 +45,7 @@ export function Faq() {
        {!isMobile && (
         <>
           <div className="absolute inset-0 z-0 opacity-10">
-            <Suspense fallback={<div className="bg-background w-full h-full" />}>
+            <Suspense fallback={<div className="bg-background w-full h-full" />} >
               <ThreeCanvas />
             </Suspense>
           </div>
