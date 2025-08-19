@@ -69,7 +69,7 @@ export function Faq() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5 }}
         >
-          <Accordion type="single" collapsible className="w-full bg-card/50 p-4 sm:p-8 rounded-lg shadow-lg border border-border/20">
+          <Accordion type="single" collapsible className="w-full bg-gradient-to-br from-primary/10 via-background to-accent/10 p-4 sm:p-8 rounded-2xl shadow-xl border border-border/20">
             {faqs.map((faq, index) => (
                  <AccordionItem value={`item-${index+1}`} key={index}>
                     <AccordionTrigger className="text-lg text-left text-card-foreground">{faq.question}</AccordionTrigger>
