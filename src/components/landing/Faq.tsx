@@ -35,6 +35,10 @@ const faqs = [
     {
         question: "How to overcome from distractions during study?",
         answer: "Distract the distractions by firm determination and regular practice, repeatedly concentrating on study."
+    },
+    {
+        question: "First PUC is important to science stream students, WHY?",
+        answer: "• To upgrade the basic concepts.\n• To get control over the required essentials such as units, dimensions and knowledge on which the second PUC advances.\n• Every subject has its own uniqueness; to understand that and to learn it effectively.\n• To understand the correlation between different subjects and the dependency of one on another.\n• One year the student has to spend to get complete knowledge and acquire it to implement it in the near future.\n• Otherwise your 2nd PUC studies will become vague.\n• Most of the time, neglecting the first PUC means the student will further be like walking in the dark, which will not work.\n• Without a key, you can't unlock a lock; in the same way, not learning the basics means you can't understand the advanced concepts.\n• Adopt yourself to the new environment in the first PUC and prepare yourself effectively for the next task.\n• Remember, competitive professional entrance examinations papers also consist of questions based on 1st PUC syllabus as per their quota."
     }
 ]
 
@@ -77,7 +81,7 @@ export function Faq() {
             {faqs.map((faq, index) => (
                  <AccordionItem value={`item-${index+1}`} key={index}>
                     <AccordionTrigger className="text-lg text-left text-card-foreground">{faq.question}</AccordionTrigger>
-                    <AccordionContent className="text-base text-muted-foreground">
+                    <AccordionContent className="text-base text-muted-foreground whitespace-pre-line">
                       {faq.answer}
                     </AccordionContent>
                 </AccordionItem>
