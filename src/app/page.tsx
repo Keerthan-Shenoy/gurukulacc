@@ -6,6 +6,7 @@ import { WhyChooseUs } from "@/components/landing/WhyChooseUs";
 import { Courses } from "@/components/landing/Courses";
 import { ConceptGallery } from "@/components/landing/ConceptGallery";
 import { AiTools } from "@/components/landing/AiTools";
+import { Faq } from "@/components/landing/Faq";
 import { Footer } from "@/components/landing/Footer";
 import { AdmissionsOpenBanner } from "@/components/landing/AdmissionsOpenBanner";
 
@@ -22,6 +23,7 @@ export default function Home() {
           <Courses />
           <ConceptGallery />
           <AiTools />
+          <Faq />
           <Footer />
         </main>
       </div>

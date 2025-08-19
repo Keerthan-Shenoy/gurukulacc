@@ -15,6 +15,7 @@ const navLinks = [
   { id: 'nav-courses', href: '#courses', label: 'Courses' },
   { id: 'nav-gallery', href: '#gallery', label: 'Gallery' },
   { id: 'nav-ai-tools', href: '#ai-tools', label: 'Quiz' },
+  { id: 'nav-faq', href: '#faq', label: 'FAQ' },
   { id: 'nav-contact', href: '#contact', label: 'Contact' },
 ];
 
