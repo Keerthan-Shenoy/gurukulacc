@@ -1,4 +1,3 @@
-
 'use client';
 
 import {
@@ -8,6 +7,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { motion } from "framer-motion";
+import { Suspense } from "react";
+import { ThreeCanvas } from "./ThreeCanvas";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const faqs = [
     {
@@ -33,9 +35,20 @@ const faqs = [
 ]
 
 export function Faq() {
+  const isMobile = useIsMobile();
   return (
-    <section id="faq" className="py-20 bg-background">
-      <div className="container mx-auto px-6">
+    <section id="faq" className="relative py-20 bg-background overflow-hidden">
+       {!isMobile && (
+        <>
+          <div className="absolute inset-0 z-0 opacity-10">
+            <Suspense fallback={<div className="bg-background w-full h-full" />}>
+              <ThreeCanvas />
+            </Suspense>
+          </div>
+          <div className="absolute inset-0 z-10 bg-background/80 backdrop-blur-sm"></div>
+        </>
+      )}
+      <div className="container mx-auto px-6 relative z-20">
         <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: -50 }}
@@ -56,11 +69,11 @@ export function Faq() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5 }}
         >
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full bg-card/50 p-4 sm:p-8 rounded-lg shadow-lg border border-border/20">
             {faqs.map((faq, index) => (
                  <AccordionItem value={`item-${index+1}`} key={index}>
-                    <AccordionTrigger className="text-lg text-left">{faq.question}</AccordionTrigger>
-                    <AccordionContent className="text-base text-gray-600">
+                    <AccordionTrigger className="text-lg text-left text-card-foreground">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
                       {faq.answer}
                     </AccordionContent>
                 </AccordionItem>
