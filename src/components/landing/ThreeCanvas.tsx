@@ -31,22 +31,23 @@ export function ThreeCanvas() {
       directionalLight.position.set(5, 5, 5);
       scene.add(directionalLight);
 
+      // Use shapes more symbolic of science/math for a unique educational theme
       const geometries = [
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.SphereGeometry(0.8, 32, 32),
-        new THREE.ConeGeometry(0.8, 1.5, 32),
-        new THREE.TorusGeometry(0.7, 0.2, 16, 100),
         new THREE.DodecahedronGeometry(1),
-        new THREE.OctahedronGeometry(1),
+        new THREE.OctahedronGeometry(1.2),
+        new THREE.TorusGeometry(0.8, 0.3, 16, 100),
+        new THREE.CylinderGeometry(0.5, 0.5, 1.5, 32),
+        new THREE.CapsuleGeometry(0.6, 0.8, 4, 8),
       ];
 
+      // Use a different color for this section to make it unique
       const material = new THREE.MeshStandardMaterial({
-        color: 0x6366f1, // primary color
-        metalness: 0.3,
-        roughness: 0.6,
+        color: 0x2dd4bf, // accent color (teal)
+        metalness: 0.4,
+        roughness: 0.5,
       });
 
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 30; i++) {
         const geometry = geometries[Math.floor(Math.random() * geometries.length)];
         const object = new THREE.Mesh(geometry, material);
 
@@ -58,7 +59,7 @@ export function ThreeCanvas() {
         object.rotation.y = Math.random() * 2 * Math.PI;
         object.rotation.z = Math.random() * 2 * Math.PI;
 
-        const scale = Math.random() * 0.5 + 0.5;
+        const scale = Math.random() * 0.4 + 0.6; // Slightly different scale for variety
         object.scale.set(scale, scale, scale);
 
         scene.add(object);
@@ -77,17 +78,27 @@ export function ThreeCanvas() {
       }
     };
 
+    let scrollY = window.scrollY;
+    const handleScroll = () => {
+        scrollY = window.scrollY;
+    }
+    window.addEventListener('scroll', handleScroll);
+
     const clock = new THREE.Clock();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       if(renderer && scene && camera) {
         const elapsedTime = clock.getElapsedTime();
+        
+        // Make camera movement subtler and tied to scroll
+        camera.position.y = -scrollY / (window.innerHeight / 2) * 2;
 
-        // Animate objects
+
+        // Animate objects with a different pattern
         for (const object of objects) {
-            object.rotation.x += 0.005;
-            object.rotation.y += 0.005;
+            object.rotation.y += 0.003;
+            object.rotation.z -= 0.004;
         }
 
         renderer.render(scene, camera);
@@ -99,6 +110,7 @@ export function ThreeCanvas() {
     return () => {
         cancelAnimationFrame(animationFrameId);
         window.removeEventListener('resize', onWindowResize);
+        window.removeEventListener('scroll', handleScroll);
         if (renderer) {
             renderer.dispose();
         }
