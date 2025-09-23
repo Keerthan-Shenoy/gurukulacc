@@ -1,6 +1,10 @@
-
 import { QuizView } from './QuizView';
 
-export default function QuizPage({ params }: { params: { course: string } }) {
-  return <QuizView course={params.course} />;
+export default async function QuizPage({ 
+  params 
+}: { 
+  params: Promise<{ course: string }> 
+}) {
+  const { course } = await params;
+  return <QuizView course={course} />;
 }
