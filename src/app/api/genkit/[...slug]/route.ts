@@ -1,17 +1,33 @@
-// src/app/api/genkit/[...slug]/route.ts
-import { genkit } from 'genkit';
-import {googleAI} from '@genkit-ai/googleai';
-import {NextResponse} from 'next/server';
-
-// Import your AI flows here
-
-export const ai = genkit({
-  plugins: [googleAI()],
-  model: 'googleai/gemini-2.0-flash',
-});
-
+import { ai } from '@/ai/genkit';
 
 export const POST = async (req: Request) => {
-  // Implement a custom handler for POST requests
-  return NextResponse.json({ message: 'Custom handler implemented' });
+  try {
+    const body = await req.json();
+    
+    return Response.json({ 
+      message: 'Custom handler implemented',
+      // result: result
+    });
+  } catch (error) {
+    console.error('Error in POST handler:', error);
+    return Response.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+};
+
+export const GET = async (req: Request) => {
+  try {
+    return Response.json({ 
+      message: 'Genkit API endpoint is working',
+      endpoint: 'genkit'
+    });
+  } catch (error) {
+    console.error('Error in GET handler:', error);
+    return Response.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
 };
