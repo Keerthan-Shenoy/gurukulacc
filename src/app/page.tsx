@@ -1,4 +1,3 @@
-
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
 import { About } from "@/components/landing/About";
@@ -12,24 +11,23 @@ import { AdmissionsOpenBanner } from "@/components/landing/AdmissionsOpenBanner"
 import { StudyAdda } from "@/components/landing/StudyAdda";
 import { VideoGallery } from "@/components/landing/VideoGallery";
 
-
 export default function Home() {
   return (
-      <div className="flex flex-col min-h-dvh text-foreground">
-         <Header />
-        <main className="flex-1">
-          <Hero />
-          <AdmissionsOpenBanner />
-          <About />
-          <WhyChooseUs />
-          <Courses />
-          <ConceptGallery />
-          <VideoGallery />
-          <AiTools />
-          <StudyAdda />
-          <Faq />
-          <Footer />
-        </main>
-      </div>
+    <div className="flex flex-col min-h-dvh text-foreground">
+      <Header />
+      <main className="flex-1">
+        <Hero />
+        <AdmissionsOpenBanner />
+        <About />
+        <WhyChooseUs />
+        <Courses />
+        <ConceptGallery />
+        <VideoGallery />
+        <AiTools />
+        <StudyAdda />
+        <Faq />
+        <Footer />
+      </main>
+    </div>
   );
 }
