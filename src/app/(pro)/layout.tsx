@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 import ProGuard from "@/components/ProGuard";
+import "../globals.css"; // if layout is one level deep
+
 
 export default function ProLayout({ children }: { children: ReactNode }) {
   return (

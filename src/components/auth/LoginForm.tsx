@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
-import { Eye, EyeOff, Loader2, KeyRound } from 'lucide-react';
-import { apiFetch } from '@/lib/api';
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { Eye, EyeOff, Loader2, KeyRound } from "lucide-react";
+import { apiFetch } from "@/lib/api";
 
 export function LoginForm() {
   const { toast } = useToast();
@@ -14,9 +14,9 @@ export function LoginForm() {
 
   const [otpSessionId, setOtpSessionId] = useState<string | null>(null);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [otp, setOtp] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState("");
 
   // --- Login submit ---
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,57 +24,74 @@ export function LoginForm() {
     setLoading(true);
 
     try {
-      const res = await apiFetch('/auth/login', {
-        method: 'POST',
+      const res = await apiFetch("/auth/login", {
+        method: "POST",
         body: JSON.stringify({ email, password }),
       });
 
       if (res.success && res.data?.otpSessionId) {
         setOtpSessionId(res.data.otpSessionId);
-        toast({ title: 'OTP Sent', description: 'Enter the OTP sent to your email/phone 📩' });
+        toast({
+          title: "OTP Sent",
+          description: "Enter the OTP sent to your email/phone 📩",
+        });
       } else {
-        toast({ title: 'Login failed', description: res.message || 'Unknown error', variant: 'destructive' });
+        toast({
+          title: "Login failed",
+          description: res.message || "Unknown error",
+          variant: "destructive",
+        });
       }
     } catch (err: any) {
-      toast({ title: 'Login failed', description: err.message, variant: 'destructive' });
+      toast({
+        title: "Login failed",
+        description: err.message,
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
   };
 
   // --- OTP submit ---
-const handleOtpSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  if (!otpSessionId) return;
+  const handleOtpSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!otpSessionId) return;
 
-  setOtpLoading(true);
-  try {
-    const res = await apiFetch('/auth/verify-login-otp', {
-      method: 'POST',
-      body: JSON.stringify({ code: otp, otpSessionId }),
-    });
-
-    if (res.success && res.data?.user) {
-      // Save user and csrfToken to localStorage
-      localStorage.setItem('user', JSON.stringify(res.data.user));
-      localStorage.setItem('csrfToken', res.data.csrfToken);
-
-      toast({ title: 'Login successful 🎉', description: `Welcome ${res.data.user.name}` });
-      window.location.href = '/dashboard';
-    } else {
-      toast({
-        title: 'OTP Verification Failed',
-        description: res.message || 'Invalid OTP',
-        variant: 'destructive',
+    setOtpLoading(true);
+    try {
+      const res = await apiFetch("/auth/verify-login-otp", {
+        method: "POST",
+        body: JSON.stringify({ code: otp, otpSessionId }),
       });
-    }
-  } catch (err: any) {
-    toast({ title: 'OTP Verification Failed', description: err.message, variant: 'destructive' });
-  } finally {
-    setOtpLoading(false);
-  }
-};
 
+      if (res.success && res.data?.user) {
+        // Save user and csrfToken to localStorage
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem("csrfToken", res.data.csrfToken);
+
+        toast({
+          title: "Login successful 🎉",
+          description: `Welcome ${res.data.user.name}`,
+        });
+        window.location.href = "/dashboard";
+      } else {
+        toast({
+          title: "OTP Verification Failed",
+          description: res.message || "Invalid OTP",
+          variant: "destructive",
+        });
+      }
+    } catch (err: any) {
+      toast({
+        title: "OTP Verification Failed",
+        description: err.message,
+        variant: "destructive",
+      });
+    } finally {
+      setOtpLoading(false);
+    }
+  };
 
   // --- OTP UI ---
   if (otpSessionId) {
@@ -98,7 +115,13 @@ const handleOtpSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             disabled={otpLoading}
             className="w-full bg-indigo-600 text-white py-3 rounded-xl hover:bg-indigo-700 transition-all shadow-md font-medium flex items-center justify-center gap-2"
           >
-            {otpLoading ? <><Loader2 className="animate-spin" size={18} /> Verifying...</> : 'Verify OTP'}
+            {otpLoading ? (
+              <>
+                <Loader2 className="animate-spin" size={18} /> Verifying...
+              </>
+            ) : (
+              "Verify OTP"
+            )}
           </button>
         </form>
       </div>
@@ -108,7 +131,9 @@ const handleOtpSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   // --- Login Form UI ---
   return (
     <div className="w-full max-w-md mx-auto p-6 bg-white rounded-2xl shadow-lg">
-      <h2 className="text-xl font-semibold text-center mb-6">Welcome Back 👋</h2>
+      <h2 className="text-xl font-semibold text-center mb-6">
+        Welcome Back 👋
+      </h2>
       <form onSubmit={handleLoginSubmit} className="flex flex-col gap-5">
         <div className="relative">
           <input
@@ -126,7 +151,7 @@ const handleOtpSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
         <div className="relative">
           <input
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -150,9 +175,23 @@ const handleOtpSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           disabled={loading}
           className="w-full flex items-center justify-center bg-indigo-600 text-white py-3 rounded-xl hover:bg-indigo-700 transition-all shadow-md font-medium gap-2"
         >
-          {loading ? <><Loader2 className="animate-spin" size={18} /> Logging in...</> : 'Login'}
+          {loading ? (
+            <>
+              <Loader2 className="animate-spin" size={18} /> Logging in...
+            </>
+          ) : (
+            "Login"
+          )}
         </button>
       </form>
+      <div className="mt-3 text-center">
+        <a
+          href="/auth/change-password/request"
+          className="text-sm text-indigo-600 hover:underline"
+        >
+          Forgot Password?
+        </a>
+      </div>
     </div>
   );
 }
