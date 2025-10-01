@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Suspense } from "react";
 import { AuthProvider } from "@/context/AuthContext";
@@ -51,7 +51,10 @@ export default function RootLayout({
       >
         <Suspense>
           <AuthProvider>
-            <div vaul-drawer-wrapper="">{children}</div>
+            <div vaul-drawer-wrapper="">
+              
+              {children}</div>
+
             <Toaster />
           </AuthProvider>
         </Suspense>

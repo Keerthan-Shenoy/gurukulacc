@@ -3,7 +3,7 @@
 import { useActionState, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { registerAction } from "@/app/auth/register/action";
+import { registerAction } from "@/app/(public)/auth/register/action";
 import { Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 

@@ -90,6 +90,7 @@ export default function VerifyEmailPage() {
             <p className="mt-2 text-sm text-muted-foreground">{resendStatus}</p>
           )}
         </div>
+        
       </div>
     </div>
   );
