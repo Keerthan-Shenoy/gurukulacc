@@ -1,25 +1,27 @@
-import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
-import './globals.css';
+import type { Metadata } from "next";
+import { Inter, Poppins } from "next/font/google";
+import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import { Suspense } from 'react';
+import { Suspense } from "react";
+import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['700'],
-  variable: '--font-poppins',
-  display: 'swap',
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-poppins",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: 'GCC',
-  description: 'Empowering students for academic excellence and competitive success.',
+  title: "GCC",
+  description:
+    "Empowering students for academic excellence and competitive success.",
 };
 
 export default function RootLayout({
@@ -28,7 +30,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} !scroll-smooth`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${poppins.variable} !scroll-smooth`}
+    >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
@@ -40,12 +45,15 @@ export default function RootLayout({
         />
         <link rel="icon" href="/file (1).svg" type="image/svg+xml" />
       </head>
-      <body className="font-sans antialiased bg-background" suppressHydrationWarning>
+      <body
+        className="font-sans antialiased bg-background"
+        suppressHydrationWarning
+      >
         <Suspense>
-          <div vaul-drawer-wrapper="">
-            {children}
-          </div>
-          <Toaster />
+          <AuthProvider>
+            <div vaul-drawer-wrapper="">{children}</div>
+            <Toaster />
+          </AuthProvider>
         </Suspense>
       </body>
     </html>

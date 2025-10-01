@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export function LoginButton() {
   return (
-    <Link href="/register">
+    <Link href="/auth/register">
       <div
         aria-label="Enroll Now Button"
         tabIndex={0}
