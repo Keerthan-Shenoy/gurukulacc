@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 
 export function AdmissionsOpenBanner() {
-  const text = "✨ADMISSIONS OPEN 2025/26 - COACHING AVAILABLE FOR CLASS 9,10 & PUC✨";
+  const text = "✨ADMISSIONS OPEN 2026/27 - COACHING AVAILABLE FOR CLASS 9,10 & PUC✨";
   return (
     <section className="bg-background py-8">
       <div className="relative rounded-lg mx-auto max-w-7xl animated-gradient-border">
