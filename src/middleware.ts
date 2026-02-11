@@ -1,17 +1,29 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(req: NextRequest) {
-  const token = req.cookies.get("access_token"); 
+// Define protected routes with regex patterns
+const protectedPatterns = [
+  /^\/dashboard(\/.*)?$/,
+  /^\/quiz(\/.*)?$/,
+  /^\/pro(\/.*)?$/, 
+];
 
-  const protectedPaths = ["/dashboard", "/quiz", "/(pro)"];
+export function middleware(req: NextRequest) {
+  const token = req.cookies.get("access_token")?.value;
   const path = req.nextUrl.pathname;
 
-  const isProtected = protectedPaths.some((p) => path.startsWith(p));
+  // Check if the path matches any protected pattern
+  const isProtected = protectedPatterns.some((pattern) => pattern.test(path));
 
+  // Redirect if protected route and no token
   if (isProtected && !token) {
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 
   return NextResponse.next();
 }
+
+// Specify which paths this middleware should run on
+export const config = {
+  matcher: ["/dashboard/:path*", "/quiz/:path*", "/pro/:path*"],
+};
